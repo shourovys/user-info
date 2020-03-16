@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { userInfo } from 'os';
+import React, { useState } from "react";
+import FackData from "../../Fack-data/FackData";
+import DisplayUser from '../DisplayUser/DisplayUser'
 
-const User = () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-  .then(response => response.json())
-  .then(userInfo => console.log(userInfo))
+const User = props => {
+  const [usersInfo, setUsersInfo] = useState(FackData);
 
-  const [user,setUser]= useState(userInfo);
-    return (
-        <div>
-            <h3>Name : {user.name}</h3>
-        </div>
-    );
+  return (
+    <div>
+      {usersInfo.map(userInfo => (
+        <DisplayUser userInfo={userInfo}></DisplayUser>
+      ))}
+    </div>
+  );
 };
 
 export default User;
